@@ -1,0 +1,1350 @@
+<!DOCTYPE html> 
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ChitraHarsha Vijnana - An All-Rounder Scientific Theories Exploration platform for Space, Mathematics, and Physics, powered by live AI and innovative tools. Made in India.">
+    <title>ChitraHarsha Vijnana - Scientific Exploration</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@0.395.0/dist/umd/lucide.min.js"></script>
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030014; /* Deep space purple/black */
+            color: #e0e0e0;
+        }
+        /* Custom glowing effect */
+        .glow-effect {
+            box-shadow: 0 0 5px rgba(168, 85, 247, 0.5), 0 0 10px rgba(168, 85, 247, 0.4), 0 0 15px rgba(168, 85, 247, 0.3);
+        }
+        .btn-primary {
+            @apply px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 glow-effect;
+        }
+        .btn-secondary {
+            @apply px-5 py-2 bg-gray-700 text-white font-medium rounded-lg hover:bg-gray-600 transition-all duration-300 ease-in-out;
+        }
+        .card {
+            @apply bg-gray-900/50 backdrop-blur-md border border-purple-500/20 rounded-xl shadow-2xl;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030014;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #581c87; /* purple-900 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a855f7; /* purple-500 */
+        }
+        /* Simple pulse for "live" data */
+        .live-dot {
+            @apply w-3 h-3 bg-green-500 rounded-full animate-pulse;
+        }
+        /* Chat bubble styles */
+        .chat-bubble {
+            @apply p-4 rounded-xl max-w-xl;
+        }
+        .chat-bubble-user {
+            @apply bg-blue-600 text-white rounded-br-none ml-auto;
+        }
+        .chat-bubble-model {
+            @apply bg-gray-800 text-white rounded-bl-none mr-auto;
+        }
+        /* Custom input */
+        .ai-input {
+            @apply w-full p-4 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500;
+        }
+        /* Modal styles */
+        .modal-backdrop {
+            @apply fixed inset-0 bg-black/80 backdrop-blur-sm z-40 hidden;
+        }
+        .modal-content {
+            @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-900 border border-purple-500/30 rounded-2xl shadow-2xl z-50 p-8 w-full max-w-2xl hidden;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Main Application Container -->
+    <div id="app" class="flex-grow">
+        <!-- Content is rendered dynamically by JavaScript -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900/50 border-t border-purple-500/20 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <!-- Get in Touch -->
+            <div id="get-in-touch" class="card p-8 mb-12">
+                <h3 class="text-3xl font-bold text-white mb-4">Get in Touch</h3>
+                <p class="text-gray-300 mb-6">Have questions or want to collaborate? Reach out to us.</p>
+                <form action="#" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
+                        <input type="text" id="name" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                        <input type="email" id="email" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
+                        <textarea id="message" rows="4" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500"></textarea>
+                    </div>
+                    <div class="md:col-span-2 text-right">
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Quick Links & Copyright -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 nav-link" data-page="about">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 nav-link" data-page="blog">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 nav-link" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Legal & Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 nav-link" data-page="faq">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 nav-link" data-page="privacy">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 nav-link" data-page="terms">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Features</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 nav-link" data-page="explore">AI Explorer</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400" onclick="showModal('freemiumModal')">Freemium Plans</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400">Image Scan</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400">3D Modeling</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <!-- Icons using Lucide -->
+                        <a href="#" class="text-gray-400 hover:text-purple-400"><i data-lucide="youtube"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500">
+                <p>&copy; 2025 ChitraHarsha Vijnana (A ChitraHarshaVPK Venture). All rights reserved. Made in India 🇮🇳</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Freemium Modal -->
+    <div id="freemiumModalBackdrop" class="modal-backdrop" onclick="closeModal('freemiumModal')"></div>
+    <div id="freemiumModal" class="modal-content">
+        <h2 class="text-3xl font-bold text-white mb-6">Choose Your Plan</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Free Plan -->
+            <div class="card p-6 border-gray-700">
+                <h3 class="text-2xl font-semibold text-white mb-3">Explorer (Free)</h3>
+                <p class="text-gray-300 mb-4">Start exploring the universe of science.</p>
+                <ul class="space-y-2 text-gray-300 mb-6">
+                    <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 text-green-500 mr-2"></i> Standard AI Model</li>
+                    <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 text-green-500 mr-2"></i> Access to Public Theories</li>
+                    <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 text-green-500 mr-2"></i> Community Support</li>
+                </ul>
+                <button class="w-full btn-secondary" disabled>Current Plan</button>
+            </div>
+            <!-- Pro Plan -->
+            <div class="card p-6 border-purple-500">
+                <h3 class="text-2xl font-semibold text-purple-400 mb-3">Innovator (Pro)</h3>
+                <p class="text-gray-300 mb-4">Unlock the full power of innovation.</p>
+                <ul class="space-y-2 text-gray-300 mb-6">
+                    <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 text-green-500 mr-2"></i> Advanced AI & LLMs</li>
+                    <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 text-green-500 mr-2"></i> 3D Modeling Tools</li>
+                    <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 text-green-500 mr-2"></i> Image Scan (Beta)</li>
+                    <li class="flex items-center"><i data-lucide="check" class="w-5 h-5 text-green-500 mr-2"></i> Quantum-Powered Analysis (Beta)</li>
+                </ul>
+                <button class="w-full btn-primary" onclick="showModal('paymentModal')">Upgrade Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModalBackdrop" class="modal-backdrop" onclick="closeModal('paymentModal')"></div>
+    <div id="paymentModal" class="modal-content">
+        <h2 class="text-3xl font-bold text-white mb-6">Complete Your Payment</h2>
+        <p class="text-gray-300 mb-6">Choose your preferred payment method to unlock the Innovator plan.</p>
+        <!-- Payment Options -->
+        <div class="space-y-4">
+            <!-- The ChitraHarsha VPK Pay (UPI) -->
+            <div class="card p-6 flex items-center justify-between hover:bg-gray-800 cursor-pointer">
+                <div>
+                    <h3 class="text-xl font-semibold text-white">The ChitraHarsha VPK Pay</h3>
+                    <p class="text-gray-400">Pay with UPI (INR)</p>
+                </div>
+                <img src="https://placehold.co/100x40/030014/a855f7?text=VPK+Pay" alt="VPK Pay Logo" class="rounded">
+            </div>
+            <!-- ChitraHarsha Cryptocurrency (CHC) -->
+            <div class="card p-6 flex items-center justify-between hover:bg-gray-800 cursor-pointer">
+                <div>
+                    <h3 class="text-xl font-semibold text-white">ChitraHarsha Coin (CHC)</h3>
+                    <p class="text-gray-400">Pay with Cryptocurrency</p>
+                </div>
+                <img src="https://placehold.co/40x40/a855f7/ffffff?text=C" alt="CHC Logo" class="rounded-full">
+            </div>
+        </div>
+        <button class="btn-secondary mt-8" onclick="closeModal('paymentModal')">Cancel</button>
+    </div>
+
+    <!-- Mobile Menu (Hidden) -->
+    <div id="mobile-menu" class_long="fixed inset-0 bg-gray-900 z-50 p-6 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+         class="fixed inset-0 bg-gray-900 z-50 p-6 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-bold text-white">Menu</h2>
+            <button id="close-menu-btn">
+                <i data-lucide="x" class="w-8 h-8 text-white"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col space-y-4">
+            <a href="#" class="text-gray-300 hover:text-purple-400 text-lg nav-link" data-page="home">Home</a>
+            <a href="#" class="text-gray-300 hover:text-purple-400 text-lg nav-link" data-page="explore">Explore</a>
+            <a href="#" class="text-gray-300 hover:text-purple-400 text-lg nav-link" data-page="blog">Blog</a>
+            <a href="#" class="text-gray-300 hover:text-purple-400 text-lg nav-link" data-page="about">About</a>
+            <a href="#" class="text-gray-300 hover:text-purple-400 text-lg nav-link" data-page="contact">Contact</a>
+            <a href="#" class="text-gray-300 hover:text-purple-400 text-lg" onclick="showModal('freemiumModal')">Plans</a>
+            <button class="w-full btn-primary nav-link" data-page="login">Login / Register</button>
+        </nav>
+    </div>
+
+
+    <!-- Firebase and App Logic -->
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { 
+            getAuth, 
+            signInAnonymously, 
+            signInWithCustomToken, 
+            onAuthStateChanged,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { 
+            getFirestore, 
+            doc, 
+            setDoc, 
+            getDoc,
+            addDoc,
+            collection,
+            onSnapshot,
+            query
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- STATE MANAGEMENT ---
+        let app = null;
+        let auth = null;
+        let db = null;
+        let userId = null;
+        let userEmail = null;
+        let userRole = 'guest'; // 'guest', 'user', 'admin'
+        let currentChatHistory = [];
+        let isChatLoading = false;
+        let chatUnsubscribe = null;
+
+        // App's current page state
+        let currentPage = 'home';
+        
+        // --- FIREBASE & APP INITIALIZATION ---
+        
+        // Use provided Firebase config and App ID
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        async function initFirebase() {
+            try {
+                app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        // User is signed in
+                        userId = user.uid;
+                        userEmail = user.email;
+                        console.log('User signed in:', userId);
+                        
+                        // Check for admin role (simplified)
+                        if (user.email === 'admin@vijnana.com') { // Hardcoded admin for demo
+                            userRole = 'admin';
+                        } else {
+                            userRole = 'user';
+                        }
+                        
+                        await loadChatHistory();
+
+                    } else {
+                        // User is signed out, sign in anonymously or with custom token
+                        console.log('No user found, attempting auth...');
+                        if (initialAuthToken) {
+                            await signInWithCustomToken(auth, initialAuthToken);
+                        } else {
+                            await signInAnonymously(auth);
+                        }
+                        userId = auth.currentUser?.uid || crypto.randomUUID();
+                        userRole = 'guest';
+                    }
+                    // Initial render after auth is sorted
+                    renderApp();
+                });
+
+            } catch (error) {
+                console.error("Firebase Initialization Error:", error);
+                // Render a basic error state
+                document.getElementById('app').innerHTML = `<div class="p-8 text-center text-red-400">Error loading application. Please check console.</div>`;
+            }
+        }
+
+        // --- GEMINI API CALL ---
+        async function callVijnanaAI(prompt) {
+            isChatLoading = true;
+            renderExplore(); // Re-render to show loader
+
+            // Add user message to local state
+            const userMessage = { role: 'user', text: prompt };
+            currentChatHistory.push(userMessage);
+
+            // Save user message to Firestore
+            try {
+                await addDoc(collection(db, `artifacts/${appId}/users/${userId}/chat_history`), {
+                    role: 'user',
+                    text: prompt,
+                    timestamp: new Date()
+                });
+            } catch (error) {
+                console.error("Error saving user chat:", error);
+            }
+
+            const systemPrompt = "You are 'Vijnana', an AI assistant for the ChitraHarsha Vijnana platform. Your purpose is to help users explore scientific theories in Space, Mathematics, and Physics, and brainstorm innovative solutions. You provide up-to-date, accurate information in a clear and inspiring way. Always cite your sources when possible, especially when using your search tool.";
+            const apiKey = ""; // API key is handled by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                tools: [{ "google_search": {} }], // Enable Google Search for "Auto Update with Latest Data"
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                const candidate = result.candidates?.[0];
+
+                if (candidate && candidate.content?.parts?.[0]?.text) {
+                    const text = candidate.content.parts[0].text;
+                    let sources = [];
+                    
+                    const groundingMetadata = candidate.groundingMetadata;
+                    if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                        sources = groundingMetadata.groundingAttributions
+                            .map(attr => ({
+                                uri: attr.web?.uri,
+                                title: attr.web?.title,
+                            }))
+                            .filter(source => source.uri && source.title);
+                    }
+
+                    const modelMessage = { role: 'model', text: text, sources: sources };
+                    currentChatHistory.push(modelMessage);
+
+                    // Save model response to Firestore
+                    await addDoc(collection(db, `artifacts/${appId}/users/${userId}/chat_history`), {
+                        role: 'model',
+                        text: text,
+                        sources: sources,
+                        timestamp: new Date()
+                    });
+
+                } else {
+                    throw new Error("Invalid response structure from API.");
+                }
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                const errorMessage = { role: 'model', text: `Sorry, I encountered an error. ${error.message}`, sources: [] };
+                currentChatHistory.push(errorMessage);
+                // Don't save error to DB
+            } finally {
+                isChatLoading = false;
+                renderExplore(); // Re-render to show new message
+            }
+        }
+        
+        // --- FIRESTORE CHAT HISTORY ---
+        async function loadChatHistory() {
+            if (chatUnsubscribe) chatUnsubscribe(); // Unsubscribe from old listener
+
+            const chatCollectionRef = collection(db, `artifacts/${appId}/users/${userId}/chat_history`);
+            // Note: orderBy is removed as per guidelines to avoid index errors.
+            // We will sort in-memory.
+            const q = query(chatCollectionRef);
+
+            chatUnsubscribe = onSnapshot(q, (snapshot) => {
+                let history = [];
+                snapshot.forEach((doc) => {
+                    history.push({ id: doc.id, ...doc.data() });
+                });
+                
+                // Sort by timestamp in memory
+                history.sort((a, b) => a.timestamp.toDate() - b.timestamp.toDate());
+
+                currentChatHistory = history;
+                if (currentPage === 'explore') {
+                    renderExplore(); // Re-render chat if on the page
+                }
+            }, (error) => {
+                console.error("Error loading chat history:", error);
+            });
+        }
+
+        // --- PAGE RENDERING ---
+
+        // Render Header (conditionally)
+        function renderHeader() {
+            let authButton = '';
+            if (userRole === 'guest') {
+                authButton = `<button class="btn-primary nav-link" data-page="login">Login / Register</button>`;
+            } else {
+                authButton = `
+                    <button class="nav-link" data-page="dashboard" title="Dashboard">
+                        <i data-lucide="user-circle-2" class="w-8 h-8 text-white hover:text-purple-400"></i>
+                    </button>
+                    ${userRole === 'admin' ? `
+                    <button class="nav-link" data-page="admin" title="Admin Panel">
+                        <i data-lucide="shield" class="w-8 h-8 text-white hover:text-purple-400"></i>
+                    </button>` : ''}
+                `;
+            }
+
+            return `
+            <header class="sticky top-0 z-30 bg-gray-900/50 backdrop-blur-md border-b border-purple-500/20">
+                <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-center h-20">
+                        <!-- Logo -->
+                        <div class="flex-shrink-0 flex items-center">
+                            <i data-lucide="brain-circuit" class="w-10 h-10 text-purple-400 mr-2 glow-effect"></i>
+                            <a href="#" class="text-2xl font-bold text-white nav-link" data-page="home">
+                                ChitraHarsha Vijnana
+                            </a>
+                        </div>
+                        <!-- Desktop Nav -->
+                        <div class="hidden md:flex md:items-center md:space-x-8">
+                            <a href="#" class="text-gray-300 hover:text-purple-400 font-medium nav-link" data-page="home">Home</a>
+                            <a href="#" class="text-gray-300 hover:text-purple-400 font-medium nav-link" data-page="explore">Explore</a>
+                            <a href="#" class="text-gray-300 hover:text-purple-400 font-medium nav-link" data-page="blog">Blog</a>
+                            <a href="#" class="text-gray-300 hover:text-purple-400 font-medium nav-link" data-page="about">About</a>
+                            <a href="#" class="text-gray-300 hover:text-purple-400 font-medium" onclick="showModal('freemiumModal')">Plans</a>
+                        </div>
+                        <!-- Auth & Mobile Menu Button -->
+                        <div class="flex items-center space-x-4">
+                            <div class="hidden md:flex items-center space-x-4">${authButton}</div>
+                            <button id="open-menu-btn" class="md:hidden p-2 rounded-md text-gray-300 hover:text-white hover:bg-gray-700">
+                                <i data-lucide="menu" class="w-6 h-6"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            `;
+        }
+        
+        // Render Home Page
+        function renderHome() {
+            return `
+            <main>
+                <!-- Hero Section -->
+                <section class="relative h-[80vh] min-h-[600px] flex items-center justify-center text-center overflow-hidden px-4">
+                    <!-- Background shapes/visuals -->
+                    <div class="absolute inset-0 z-0 opacity-20">
+                        <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-600 rounded-full filter blur-3xl animate-pulse"></div>
+                        <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-blue-600 rounded-full filter blur-3xl animate-pulse animation-delay-4000"></div>
+                    </div>
+                    <div class="relative z-10">
+                        <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
+                            Explore Scientific Frontiers
+                        </h1>
+                        <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
+                            An All-Rounder Scientific Theories Exploration platform. Discover, Innovate, and Create with the power of AI.
+                        </p>
+                        <button class="btn-primary text-lg nav-link" data-page="explore">
+                            Start Exploring Now <i data-lucide="arrow-right" class="inline w-5 h-5 ml-2"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Features Section -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+                    <h2 class="text-4xl font-bold text-center text-white mb-16">The Future of Discovery</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Feature 1: AI Exploration -->
+                        <div class="card p-8 text-center transform hover:scale-105 transition-transform duration-300">
+                            <i data-lucide="brain-circuit" class="w-16 h-16 text-purple-400 mx-auto mb-6"></i>
+                            <h3 class="text-2xl font-semibold text-white mb-3">AI-Powered Exploration</h3>
+                            <p class="text-gray-300">
+                                Leverage advanced AI & NLP to understand complex theories and generate innovative solutions.
+                            </p>
+                        </div>
+                        <!-- Feature 2: Live Data -->
+                        <div class="card p-8 text-center transform hover:scale-105 transition-transform duration-300">
+                            <div class="flex justify-center mb-6"><div class="live-dot mt-6 mr-2"></div><i data-lucide="database-zap" class="w-16 h-16 text-blue-400 mx-auto"></i></div>
+                            <h3 class="text-2xl font-semibold text-white mb-3">Live Data Integration</h3>
+                            <p class="text-gray-300">
+                                Our models auto-update with the latest data, giving you the most recent scientific approaches.
+                            </p>
+                        </div>
+                        <!-- Feature 3: Innovation Tools -->
+                        <div class="card p-8 text-center transform hover:scale-105 transition-transform duration-300">
+                            <i data-lucide="cuboid" class="w-16 h-16 text-green-400 mx-auto mb-6"></i>
+                            <h3 class="text-2xl font-semibold text-white mb-3">Innovation Toolkit</h3>
+                            <p class="text-gray-300">
+                                Access 3D modeling, image scan analysis, and (soon) quantum-powered simulations.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Core Topics -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+                    <h2 class="text-4xl font-bold text-center text-white mb-16">Explore Our Core Topics</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="card p-6 rounded-lg overflow-hidden">
+                            <img src="https://placehold.co/600x400/030014/a855f7?text=Space" alt="Space" class="w-full h-48 object-cover rounded-md mb-4">
+                            <h3 class="text-2xl font-semibold text-white mb-2">Space</h3>
+                            <p class="text-gray-300 mb-4">From black holes to dark matter, explore the cosmos.</p>
+                            <button class="font-medium text-purple-400 hover:text-purple-300 nav-link" data-page="explore" data-topic="space">Learn More &rarr;</button>
+                        </div>
+                        <div class="card p-6 rounded-lg overflow-hidden">
+                            <img src="https://placehold.co/600x400/030014/3b82f6?text=Mathematics" alt="Mathematics" class="w-full h-48 object-cover rounded-md mb-4">
+                            <h3 class="text-2xl font-semibold text-white mb-2">Mathematics</h3>
+                            <p class="text-gray-300 mb-4">Uncover the patterns that define our universe.</p>
+                            <button class="font-medium text-blue-400 hover:text-blue-300 nav-link" data-page="explore" data-topic="math">Learn More &rarr;</button>
+                        </div>
+                        <div class="card p-6 rounded-lg overflow-hidden">
+                            <img src="https://placehold.co/600x400/030014/10b981?text=Physics" alt="Physics" class="w-full h-48 object-cover rounded-md mb-4">
+                            <h3 class="text-2xl font-semibold text-white mb-2">Physics</h3>
+                            <p class="text-gray-300 mb-4">Understand the fundamental laws of reality.</p>
+                            <button class="font-medium text-green-400 hover:text-green-300 nav-link" data-page="explore" data-topic="physics">Learn More &rarr;</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Global Tools Section -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+                    <h2 class="text-4xl font-bold text-center text-white mb-16">Global Innovation Tools</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Live Currency Converter -->
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-semibold text-white mb-6 flex items-center">
+                                <i data-lucide="globe-2" class="w-8 h-8 text-blue-400 mr-3"></i>
+                                Live Currency Converter
+                            </h3>
+                            <div class="grid grid-cols-2 gap-4 items-end">
+                                <div>
+                                    <label for="currency-from" class="block text-sm font-medium text-gray-300">From</label>
+                                    <select id="currency-from" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                        <option>USD</option>
+                                        <option selected>INR</option>
+                                        <option>EUR</option>
+                                        <option>GBP</option>
+                                        <option>JPY</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="amount-from" class="block text-sm font-medium text-gray-300">Amount</label>
+                                    <input type="number" id="amount-from" value="1000" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                </div>
+                                <div>
+                                    <label for="currency-to" class="block text-sm font-medium text-gray-300">To</label>
+                                    <select id="currency-to" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                        <option selected>USD</option>
+                                        <option>INR</option>
+                                        <option>EUR</option>
+                                        <option>GBP</option>
+                                        <option>JPY</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="amount-to" class="block text-sm font-medium text-gray-300">Result</label>
+                                    <input type="text" id="amount-to" readonly class="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white">
+                                </div>
+                            </div>
+                            <p id="rate-display" class="text-sm text-gray-400 mt-4 text-center">Fetching live rate...</p>
+                        </div>
+                        
+                        <!-- Multi-Language Transcript (Mock) -->
+                        <div class="card p-8">
+                            <h3 class="text-2xl font-semibold text-white mb-6 flex items-center">
+                                <i data-lucide="languages" class="w-8 h-8 text-green-400 mr-3"></i>
+                                Multi-Language Transcript
+                            </h3>
+                            <p class="text-gray-300 mb-4">Live translation and transcript service (feature mock-up).</p>
+                            <textarea class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500" rows="4" placeholder="Enter text to translate..."></textarea>
+                            <button class="btn-secondary mt-4">Translate</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Download Client -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+                    <h2 class="text-4xl font-bold text-white mb-6">Get the Desktop Client</h2>
+                    <p class="text-xl text-gray-300 mb-10">Access the full power of Vijnana directly from your desktop.</p>
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <button class="btn-secondary flex items-center space-x-2"><i data-lucide="laptop"></i><span>Download for Windows</span></button>
+                        <button class="btn-secondary flex items-center space-x-2"><i data-lucide="apple"></i><span>Download for macOS</span></button>
+                        <button class="btn-secondary flex items-center space-x-2"><i data-lucide="sprout"></i><span>Download for Linux</span></button>
+                    </div>
+                </section>
+            </main>
+            `;
+        }
+
+        // Render Explore Page (AI Chat)
+        function renderExplore() {
+            // Generate chat history HTML
+            let chatHtml = currentChatHistory.map(msg => {
+                let sourcesHtml = '';
+                if (msg.sources && msg.sources.length > 0) {
+                    sourcesHtml = '<div class="mt-4 pt-2 border-t border-gray-700 space-y-1">';
+                    sourcesHtml += '<h4 class="text-sm font-semibold text-gray-400">Sources:</h4>';
+                    sourcesHtml += '<ul class="list-decimal list-inside">';
+                    sourcesHtml += msg.sources.map(source => 
+                        `<li class="text-xs text-blue-400 truncate"><a href="${source.uri}" target="_blank" rel="noopener noreferrer" title="${source.title}">${source.title}</a></li>`
+                    ).join('');
+                    sourcesHtml += '</ul></div>';
+                }
+
+                return `
+                <div class="w-full flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}">
+                    <div class="chat-bubble ${msg.role === 'user' ? 'chat-bubble-user' : 'chat-bubble-model'}">
+                        ${msg.text.replace(/\n/g, '<br>')}
+                        ${sourcesHtml}
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            // Add loading indicator
+            if (isChatLoading) {
+                chatHtml += `
+                <div class="w-full flex justify-start">
+                    <div class="chat-bubble chat-bubble-model">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
+                            <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse [animation-delay:0.2s]"></div>
+                            <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse [animation-delay:0.4s]"></div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }
+
+            return `
+            <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="flex items-center justify-center mb-8">
+                    <i data-lucide="brain-circuit" class="w-12 h-12 text-purple-400 mr-3"></i>
+                    <h1 class="text-4xl font-bold text-white">Vijnana AI Explorer</h1>
+                    <div class="live-dot ml-3"></div>
+                </div>
+                <p class="text-center text-gray-300 mb-6">Ask about Space, Math, or Physics. Get live data and innovative ideas.</p>
+                
+                <!-- Chat Window -->
+                <div id="chat-window" class="card h-[60vh] flex flex-col p-4 space-y-4 overflow-y-auto">
+                    ${chatHtml}
+                    <!-- This div ensures scrolling to bottom -->
+                    <div id="chat-end"></div>
+                </div>
+
+                <!-- Input Form -->
+                <form id="chat-form" class="mt-6">
+                    <div class="flex items-center space-x-3">
+                        <input type="text" id="chat-input" class="ai-input" placeholder="Ask a question or propose a theory..." ${isChatLoading ? 'disabled' : ''}>
+                        <button type="submit" class="btn-primary p-4" ${isChatLoading ? 'disabled' : ''}>
+                            <i data-lucide="send" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                </form>
+            </main>
+            `;
+        }
+
+        // Render Login/Register Page
+        function renderLogin() {
+            // This is a complex multi-step form based on the PDF
+            return `
+            <main class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="card p-8">
+                    <h2 class="text-3xl font-bold text-white text-center mb-8">Join ChitraHarsha Vijnana</h2>
+                    
+                    <!-- Tabbed Interface -->
+                    <div class="flex mb-6 border-b border-gray-700">
+                        <button id="login-tab-btn" class="flex-1 py-3 text-center font-semibold text-purple-400 border-b-2 border-purple-400">Login</button>
+                        <button id="register-tab-btn" class="flex-1 py-3 text-center font-semibold text-gray-500">Register</button>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="login-form" class="space-y-6">
+                        <div id="login-error" class="hidden p-3 bg-red-800 border border-red-600 rounded-md text-white"></div>
+                        <div>
+                            <label for="login-email" class="block text-sm font-medium text-gray-300">Username (Email/Mobile)</label>
+                            <input type="text" id="login-email" required class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                        </div>
+                        <div>
+                            <label for="login-password" class="block text-sm font-medium text-gray-300">Password</label>
+                            <input type="password" id="login-password" required class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                        </div>
+                        <!-- Passkey & Other Logins (Mock) -->
+                        <div class="text-center text-sm text-gray-400">Or</div>
+                        <button type="button" class="w-full btn-secondary flex items-center justify-center space-x-2">
+                            <i data-lucide="key-round" class="w-5 h-5"></i><span>Login with Passkey</span>
+                        </button>
+                        <button type="button" class="w-full btn-secondary flex items-center justify-center space-x-2">
+                            <i data-lucide="user" class="w-5 h-5"></i><span>Login with Virtual ID</span>
+                        </button>
+                        <button type="submit" class="w-full btn-primary">Login</button>
+                    </form>
+
+                    <!-- Registration Form (Multi-step) -->
+                    <form id="register-form" class="hidden space-y-6">
+                        <div id="register-error" class="hidden p-3 bg-red-800 border border-red-600 rounded-md text-white"></div>
+                        
+                        <!-- Step 1: Basic Info -->
+                        <div id="reg-step-1">
+                            <h3 class="text-lg font-semibold text-white mb-4">Step 1: Account Details</h3>
+                            <div>
+                                <label for="reg-email" class="block text-sm font-medium text-gray-300">Create Username (Email)</label>
+                                <input type="email" id="reg-email" required class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                            </div>
+                            <div>
+                                <label for="reg-mobile" class="block text-sm font-medium text-gray-300">Mobile Number (with OTP)</label>
+                                <div class="flex space-x-2">
+                                    <input type="tel" id="reg-mobile" required class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                    <button type="button" class="btn-secondary px-4 mt-1">Get OTP</button>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="reg-password" class="block text-sm font-medium text-gray-300">Create Password (min. 8 chars)</label>
+                                <input type="password" id="reg-password" required minlength="8" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                            </div>
+                            <button type="button" id="reg-next-1" class="w-full btn-primary mt-6">Next</button>
+                        </div>
+                        
+                        <!-- Step 2: Personal Details (Simplified from PDF) -->
+                        <div id="reg-step-2" class="hidden space-y-6">
+                            <h3 class="text-lg font-semibold text-white mb-4">Step 2: Personal Details</h3>
+                            <div>
+                                <label for="reg-address" class="block text-sm font-medium text-gray-300">Address / Street</label>
+                                <input type="text" id="reg-address" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label for="reg-city" class="block text-sm font-medium text-gray-300">City</label>
+                                    <input type="text" id="reg-city" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                </div>
+                                <div>
+                                    <label for="reg-state" class="block text-sm font-medium text-gray-300">State</label>
+                                    <input type="text" id="reg-state" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                </div>
+                                <div>
+                                    <label for="reg-pincode" class="block text-sm font-medium text-gray-300">Pincode</label>
+                                    <input type="text" id="reg-pincode" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                </div>
+                            </div>
+                            <button type="button" id="reg-next-2" class="w-full btn-primary mt-6">Next</button>
+                        </div>
+
+                        <!-- Step 3: Job Application (as per PDF) -->
+                        <div id="reg-step-3" class="hidden space-y-6">
+                            <h3 class="text-lg font-semibold text-white mb-4">Step 3: Apply for a Role (Optional)</h3>
+                            <p class="text-sm text-gray-400">Interested in working with ChitraHarshaVPK Ventures? Apply now.</p>
+                            <div>
+                                <label for="reg-job-role" class="block text-sm font-medium text-gray-300">Select Department</label>
+                                <select id="reg-job-role" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                    <option>Not Applying</option>
+                                    <option>HR Department</option>
+                                    <option>Finance Department</option>
+                                    <option>CEO Department</option>
+                                    <option>Brainstorming Department</option>
+                                    <option>Data Analyst Department</option>
+                                    <option>Data Scientist Department</option>
+                                    <option>Research & Development</option>
+                                    <option>Interior Designer</option>
+                                    <option>Transport Department</option>
+                                </select>
+                            </div>
+                             <div>
+                                <label for="reg-id-proof" class="block text-sm font-medium text-gray-300">ID Proof (Aadhaar/PAN) - *Required for Jobs*</label>
+                                <input type="text" id="reg-id-proof" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                            </div>
+                            <div>
+                                <label for="reg-bank-account" class="block text-sm font-medium text-gray-300">Bank Account No. - *Required for Jobs*</label>
+                                <input type="text" id="reg-bank-account" class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                            </div>
+                            <button type="submit" class="w-full btn-primary mt-6">Complete Registration</button>
+                        </div>
+                    </form>
+
+                </div>
+            </main>
+            `;
+        }
+
+        // Render Admin Panel (Mockup)
+        function renderAdminPanel() {
+            if (userRole !== 'admin') {
+                return renderError("Access Denied. You must be an admin to view this page.");
+            }
+            
+            // Mock Data from PDF
+            const totalEmployees = 330;
+            const monthlyBudget = 22600000; // 2.26 Crore
+            const annualBudget = 271200000; // 27.12 Crore
+
+            return `
+            <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <h1 class="text-4xl font-bold text-white mb-8">Admin Dashboard</h1>
+                
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="card p-6">
+                        <h3 class="text-sm font-medium text-gray-400">Total Employees</h3>
+                        <p class="text-4xl font-bold text-white">${totalEmployees}</p>
+                    </div>
+                    <div class="card p-6">
+                        <h3 class="text-sm font-medium text-gray-400">Total Monthly Budget</h3>
+                        <p class="text-4xl font-bold text-white">₹ ${monthlyBudget.toLocaleString('en-IN')}</p>
+                    </div>
+                    <div class="card p-6">
+                        <h3 class="text-sm font-medium text-gray-400">Total Annual Budget</h3>
+                        <p class="text-4xl font-bold text-white">₹ ${annualBudget.toLocaleString('en-IN')}</p>
+                    </div>
+                </div>
+
+                <!-- Main Admin Content -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Departments List -->
+                    <div class="lg:col-span-2 card p-6">
+                        <h2 class="text-2xl font-semibold text-white mb-4">Department Overview</h2>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-700">
+                                <thead class="bg-gray-800">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Department</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Employees</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Monthly Salary</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-700">
+                                    <tr><td class="px-6 py-4 whitespace-nowrap text-white">Finance</td><td class="px-6 py-4 whitespace-nowrap text-white">39</td><td class="px-6 py-4 whitespace-nowrap text-white">₹ 23,00,000</td></tr>
+                                    <tr><td class="px-6 py-4 whitespace-nowrap text-white">Data Scientists</td><td class="px-6 py-4 whitespace-nowrap text-white">39</td><td class="px-6 py-4 whitespace-nowrap text-white">₹ 23,00,000</td></tr>
+                                    <tr><td class="px-6 py-4 whitespace-nowrap text-white">Researchers</td><td class="px-6 py-4 whitespace-nowrap text-white">39</td><td class="px-6 py-4 whitespace-nowrap text-white">₹ 23,00,000</td></tr>
+                                    <tr><td class="px-6 py-4 whitespace-nowrap text-white">Brainstormers</td><td class="px-6 py-4 whitespace-nowrap text-white">39</td><td class="px-6 py-4 whitespace-nowrap text-white">₹ 23,00,000</td></tr>
+                                    <tr><td class="px-6 py-4 whitespace-nowrap text-white">CEO</td><td class="px-6 py-4 whitespace-nowrap text-white">3</td><td class="px-6 py-4 whitespace-nowrap text-white">₹ 3,00,000</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="card p-6 space-y-4">
+                        <h2 class="text-2xl font-semibold text-white mb-4">Quick Actions</h2>
+                        <button class="w-full btn-secondary">Manage Users</button>
+                        <button class="w-full btn-secondary">Virtual Interview Portal</button>
+                        <button class="w-full btn-secondary">Social Media Management</button>
+                        <div class="pt-4">
+                            <h3 class="text-lg font-medium text-white">Automate Salary Payments</h3>
+                            <p class="text-sm text-gray-400 mb-3">Allow AI to automatically process monthly transactions.</p>
+                            <button class="w-full btn-primary">Enable AI Salary Automation</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            `;
+        }
+
+        // Render Dashboard (User)
+        function renderDashboard() {
+            if (userRole === 'guest') {
+                return renderLogin(); // Force login
+            }
+            
+            return `
+            <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <h1 class="text-4xl font-bold text-white mb-8">User Dashboard</h1>
+                <div class="card p-8">
+                    <h2 class_long="text-2xl font-semibold text-white mb-6">Welcome, ${userEmail || 'User'}!</h2>
+                    <h2 class="text-2xl font-semibold text-white mb-6">Welcome, ${userEmail || 'User'}!</h2>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-medium text-gray-300">Your Virtual ID Card</h3>
+                        <div class="mt-2 card p-4 flex items-center space-x-4 bg-gray-800">
+                            <img src="https://placehold.co/100x100/a855f7/ffffff?text=QR" alt="QR Code" class="rounded-md">
+                            <div>
+                                <p class="text-white font-semibold">${userEmail || 'user@vijnana.com'}</p>
+                                <p class_long="text-sm text-gray-400 break-all">ID: ${userId}</p>
+                                <p class="text-sm text-gray-400 break-all">ID: ${userId}</p>
+                                <p class="text-sm text-green-400">Status: Active (Explorer Plan)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <button class="btn-secondary h-24 text-lg nav-link" data-page="explore">
+                            <i data-lucide="brain-circuit" class="w-6 h-6 inline-block mr-2"></i>
+                            Go to AI Explorer
+                        </button>
+                        <button class="btn-secondary h-24 text-lg" onclick="showModal('freemiumModal')">
+                            <i data-lucide="gem" class="w-6 h-6 inline-block mr-2"></i>
+                            Manage Plan
+                        </button>
+                        <button class="btn-secondary h-24 text-lg">
+                            <i data-lucide="settings" class="w-6 h-6 inline-block mr-2"></i>
+                            Account Settings
+                        </button>
+                        <button id="logout-btn" class="btn-secondary h-24 text-lg bg-red-800/50 hover:bg-red-700/50 text-red-300">
+                            <i data-lucide="log-out" class="w-6 h-6 inline-block mr-2"></i>
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </main>
+            `;
+        }
+
+        // Render Static Pages (Blog, About, etc.)
+        function renderStaticPage(page) {
+            let title = "Page Not Found";
+            let content = "<p>Sorry, the page you are looking for does not exist.</p>";
+
+            switch(page) {
+                case 'blog':
+                    title = "Vijnana Blog";
+                    content = `
+                        <p class="text-lg text-gray-300 mb-12">Latest insights and discoveries from the world of science and AI.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <!-- Blog Post 1 -->
+                            <div class="card overflow-hidden">
+                                <img src="https://placehold.co/600x400/030014/a855f7?text=Quantum+Computing" alt="Blog Image" class="w-full h-56 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-2xl font-semibold text-white mb-3">The Quantum Leap: Is It Here?</h3>
+                                    <p class="text-gray-300 mb-4">Exploring the current state of quantum computers and their potential to revolutionize scientific research.</p>
+                                    <a href="#" class="font-medium text-purple-400 hover:text-purple-300">Read More &rarr;</a>
+                                </div>
+                            </div>
+                            <!-- Blog Post 2 -->
+                            <div class="card overflow-hidden">
+                                <img src="https://placehold.co/600x400/030014/3b82f6?text=AI+in+Mathematics" alt="Blog Image" class="w-full h-56 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-2xl font-semibold text-white mb-3">AI Discovers New Mathematical Proofs</h3>
+                                    <p class="text-gray-300 mb-4">How Large Language Models are assisting mathematicians in solving decades-old problems.</p>
+                                    <a href="#" class="font-medium text-blue-400 hover:text-blue-300">Read More &rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'about':
+                    title = "About ChitraHarsha Vijnana";
+                    content = `
+                        <p class="text-lg text-gray-300 mb-6">ChitraHarsha Vijnana is a 'Made in India' platform by ChitraHarshaVPK Ventures, dedicated to pioneering AI-driven innovations in science.</p>
+                        <p class="text-lg text-gray-300 mb-6">Our mission is to provide an all-encompassing tool for students, researchers, and innovators to explore scientific theories in Space, Mathematics, and Physics. We harness the power of advanced AI, NLP, and live data integration to provide the most current and insightful information.</p>
+                        <p class="text-lg text-gray-300 mb-6">We are committed to building a future-ready application that adheres to all necessary guidelines. Our platform integrates <strong class="text-white">quantum-level high security</strong>, a <strong class="text-white">highly Blockchain management system</strong> for data integrity, and active <strong class="text-white">dark web and malware monitoring</strong>. This ensures a secure, powerful, and commercially-ready experience for all users globally.</p>
+                    `;
+                    break;
+                case 'contact':
+                    title = "Contact Us";
+                    content = `
+                        <p class="text-lg text-gray-300 mb-6">We'd love to hear from you. Please use the "Get in Touch" form at the bottom of the page or reach out to us at:</p>
+                        <p class="text-lg text-gray-300"><strong class="text-white">Email:</strong> contact@chitraharshavpk.com</p>
+                        <p class="text-lg text-gray-300"><strong class="text-white">Address:</strong> (Indian Company Address), India</p>
+                    `;
+                    break;
+                case 'faq':
+                    title = "Frequently Asked Questions";
+                    content = `
+                        <div class="space-y-6">
+                            <div class="card p-6">
+                                <h3 class="text-xl font-semibold text-white mb-2">What is ChitraHarsha Vijnana?</h3>
+                                <p class="text-gray-300">It's an AI-powered platform for exploring scientific theories in Space, Math, and Physics, with live data updates and innovation tools.</p>
+                            </div>
+                            <div class="card p-6">
+                                <h3 class="text-xl font-semibold text-white mb-2">How is my data secured?</h3>
+                                <p class="text-gray-300">We employ <strong class="text-white">quantum-level security</strong> principles and a <strong class="text-white">highly Blockchain management system</strong> for data encryption. Our systems actively monitor for threats, including malware, phishing, and <strong class="text-white">dark web</strong> activity, all built on secure Google Cloud infrastructure.</p>
+                            </div>
+                            <div class="card p-6">
+                                <h3 class="text-xl font-semibold text-white mb-2">Is this platform 'Made in India'?</h3>
+                                <p class="text-gray-300">Yes, this is a product of ChitraHarshaVPK Ventures, developed in India and following all Indian government rules and policies.</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'privacy':
+                    title = "Privacy Policy";
+                    content = `
+                        <p class="text-lg text-gray-300 mb-6">Your privacy is our top priority. This policy outlines how ChitraHarsha Vijnana (A ChitraHarshaVPK Venture) collects, uses, and protects your information.</p>
+                        <p class="text-lg text-gray-300 mb-6"><strong class="text-white">Data Collection:</strong> We collect information you provide during registration (e.g., email, job application details) and data generated during your use of our AI services, stored securely on Google Cloud Firebase.</p>
+                        <p class="text-lg text-gray-300 mb-6"><strong class="text-white">Data Security:</strong> We implement state-of-the-art, <strong class="text-white">quantum-level high security</strong> measures. This includes end-to-end data encryption (in-transit and at-rest), secure authentication protocols, and a <strong class="text-white">highly Blockchain management system</strong> to guarantee data integrity. Our systems perform 24/7 <strong class="text-white">dark web monitoring</strong> and active scanning for malware and phishing threats to protect your data.</p>
+                        <p class="text-lg text-gray-300 mb-6"><strong class="text-white">Compliance:</strong> This platform is 'Made in India' and is designed to follow all applicable Indian government rules, acts, and policies, as well as global standards for data privacy. We follow all necessary regulations for operation on platforms like Google Chrome.</p>
+                        <p class="text-lg text-gray-300 mb-6"><strong class="text-white">Use of Data:</strong> Your data is used to provide and improve our services, process payments, and, if you opt-in, manage your job application. We do not sell your personal data to third parties.</p>
+                    `;
+                    break;
+                case 'terms':
+                    title = "Terms & Conditions";
+                    content = `
+                        <p class="text-lg text-gray-300 mb-6">By accessing and using the ChitraHarsha Vijnana platform (a ChitraHarshaVPK Venture), you agree to comply with and be bound by the following terms and conditions.</p>
+                        <p class="text-lg text-gray-300 mb-6">All content, AI models, and features provided on this platform are for informational and innovative purposes. You are responsible for your use of the service and any content you generate. All services are provided in compliance with Indian Government rules and regulations.</p>
+                        <p class="text-lg text-gray-300 mb-6">This platform is provided "as is" and "as available" without any warranties, express or implied. ChitraHarshaVPK Ventures disclaims all warranties, including those of merchantability and fitness for a particular purpose.</p>
+                        <p class="text-lg text-gray-300 mb-6">We reserve the right to modify these terms at any time. Your continued use of the platform signifies your acceptance of the updated terms. This application is designed to be future-ready and for commercial use.</p>
+                    `;
+                    break;
+            }
+
+            return `
+            <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <h1 class="text-4xl font-bold text-white mb-8">${title}</h1>
+                <div class="card p-8">
+                    ${content}
+                </div>
+            </main>
+            `;
+        }
+
+        // Render Error Page
+        function renderError(message) {
+            return `
+            <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+                <i data-lucide="alert-triangle" class="w-24 h-24 text-red-500 mx-auto mb-6"></i>
+                <h1 class="text-4xl font-bold text-white mb-4">An Error Occurred</h1>
+                <p class="text-lg text-red-300">${message}</p>
+                <button class="btn-primary mt-8 nav-link" data-page="home">Go to Home</button>
+            </main>
+            `;
+        }
+
+        // --- MAIN RENDER FUNCTION ---
+        function renderApp() {
+            let pageHtml = '';
+            switch(currentPage) {
+                case 'home':
+                    pageHtml = renderHome();
+                    break;
+                case 'explore':
+                    pageHtml = renderExplore();
+                    break;
+                case 'login':
+                    pageHtml = renderLogin();
+                    break;
+                case 'dashboard':
+                    pageHtml = renderDashboard();
+                    break;
+                case 'admin':
+                    pageHtml = renderAdminPanel();
+                    break;
+                case 'blog':
+                case 'about':
+                case 'contact':
+                case 'faq':
+                case 'privacy':
+                case 'terms':
+                    pageHtml = renderStaticPage(currentPage);
+                    break;
+                default:
+                    pageHtml = renderError("Page not found.");
+            }
+            
+            // Render header + page content
+            document.getElementById('app').innerHTML = renderHeader() + pageHtml;
+            
+            // Activate icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else {
+                console.warn("Lucide icons script not loaded yet, will try again on next render.");
+            }
+
+            // Scroll chat to bottom if on explore page
+            if (currentPage === 'explore') {
+                const chatEnd = document.getElementById('chat-end');
+                if (chatEnd) {
+                    chatEnd.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+
+            // Add event listeners for new content
+            attachDynamicListeners();
+        }
+
+        // --- NAVIGATION & EVENT LISTENERS ---
+        function navigateTo(page, topic = null) {
+            currentPage = page;
+            renderApp();
+
+            // Handle pre-filled topic on explore page
+            if (page === 'explore' && topic) {
+                const input = document.getElementById('chat-input');
+                if (input) {
+                    input.value = `Tell me more about ${topic}.`;
+                    input.focus();
+                }
+            }
+        }
+
+        function attachDynamicListeners() {
+            // Navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const page = e.currentTarget.dataset.page;
+                    const topic = e.currentTarget.dataset.topic || null;
+                    navigateTo(page, topic);
+                });
+            });
+
+            // Mobile menu toggles
+            const openMenuBtn = document.getElementById('open-menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (openMenuBtn) {
+                openMenuBtn.onclick = () => mobileMenu.classList.remove('-translate-x-full');
+            }
+            if (closeMenuBtn) {
+                closeMenuBtn.onclick = () => mobileMenu.classList.add('-translate-x-full');
+            }
+
+            // --- Currency Converter Logic ---
+            if (currentPage === 'home') {
+                const amountFrom = document.getElementById('amount-from');
+                const currencyFrom = document.getElementById('currency-from');
+                const amountTo = document.getElementById('amount-to');
+                const currencyTo = document.getElementById('currency-to');
+                const rateDisplay = document.getElementById('rate-display');
+
+                let rates = {};
+
+                const fetchRates = async () => {
+                    const from = currencyFrom.value;
+                    try {
+                        const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);
+                        if (!response.ok) throw new Error('Failed to fetch rates');
+                        const data = await response.json();
+                        rates = data.rates;
+                        convertCurrency();
+                    } catch (error) {
+                        console.error("Currency API Error:", error);
+                        if(rateDisplay) rateDisplay.textContent = "Error fetching rates.";
+                    }
+                };
+
+                const convertCurrency = () => {
+                    const from = currencyFrom.value;
+                    const to = currencyTo.value;
+                    const amount = parseFloat(amountFrom.value);
+
+                    if (rates[to] && amount) {
+                        const rate = rates[to];
+                        const result = (amount * rate).toFixed(2);
+                        if(amountTo) amountTo.value = result;
+                        if(rateDisplay) rateDisplay.textContent = `1 ${from} = ${rate.toFixed(4)} ${to}`;
+                    } else {
+                         if(amountTo) amountTo.value = '';
+                         if(rateDisplay) rateDisplay.textContent = '...';
+                    }
+                };
+
+                if (amountFrom && currencyFrom && amountTo && currencyTo) {
+                    amountFrom.addEventListener('input', convertCurrency);
+                    currencyFrom.addEventListener('change', fetchRates);
+                    currencyTo.addEventListener('change', convertCurrency);
+                    
+                    // Initial fetch
+                    fetchRates();
+                }
+            }
+
+            // --- Form Listeners ---
+
+            // Chat form
+            const chatForm = document.getElementById('chat-form');
+            if (chatForm) {
+                chatForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const input = document.getElementById('chat-input');
+                    const prompt = input.value.trim();
+                    if (prompt && !isChatLoading) {
+                        input.value = '';
+                        callVijnanaAI(prompt);
+                    }
+                });
+            }
+
+            // Login/Register forms
+            if (currentPage === 'login') {
+                setupLoginTabs();
+                setupRegistrationSteps();
+                
+                // Login Submit
+                document.getElementById('login-form').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('login-email').value;
+                    const password = document.getElementById('login-password').value;
+                    const errorDiv = document.getElementById('login-error');
+                    try {
+                        await signInWithEmailAndPassword(auth, email, password);
+                        errorDiv.classList.add('hidden');
+                        navigateTo('dashboard');
+                    } catch (error) {
+                        console.error("Login Error:", error);
+                        errorDiv.textContent = error.message;
+                        errorDiv.classList.remove('hidden');
+                    }
+                });
+
+                // Register Submit
+                document.getElementById('register-form').addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('reg-email').value;
+                    const password = document.getElementById('reg-password').value;
+                    const errorDiv = document.getElementById('register-error');
+                    
+                    try {
+                        // Create user in Auth
+                        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                        const user = userCredential.user;
+
+                        // Save user data to Firestore
+                        const userData = {
+                            email: user.email,
+                            mobile: document.getElementById('reg-mobile').value,
+                            address: document.getElementById('reg-address').value,
+                            city: document.getElementById('reg-city').value,
+                            state: document.getElementById('reg-state').value,
+                            pincode: document.getElementById('reg-pincode').value,
+                            appliedJob: document.getElementById('reg-job-role').value,
+                            idProof: document.getElementById('reg-id-proof').value,
+                            bankAccount: document.getElementById('reg-bank-account').value,
+                            createdAt: new Date(),
+                            role: 'user' // Default role
+                        };
+                        
+                        await setDoc(doc(db, "users", user.uid), userData);
+                        
+                        errorDiv.classList.add('hidden');
+                        navigateTo('dashboard');
+
+                    } catch (error) {
+                        console.error("Registration Error:", error);
+                        errorDiv.textContent = error.message;
+                        errorDiv.classList.remove('hidden');
+                    }
+                });
+            }
+
+            // Logout button
+            const logoutBtn = document.getElementById('logout-btn');
+            if(logoutBtn) {
+                logoutBtn.addEventListener('click', async () => {
+                    await auth.signOut();
+                    userRole = 'guest';
+                    userId = null;
+                    userEmail = null;
+                    if(chatUnsubscribe) chatUnsubscribe();
+                    currentChatHistory = [];
+                    navigateTo('home');
+                });
+            }
+        }
+        
+        // --- UI HELPER FUNCTIONS ---
+        
+        // Modal controls
+        window.showModal = (modalId) => {
+            document.getElementById(`${modalId}Backdrop`).classList.remove('hidden');
+            document.getElementById(`${modalId}`).classList.remove('hidden');
+        }
+        window.closeModal = (modalId) => {
+            document.getElementById(`${modalId}Backdrop`).classList.add('hidden');
+            document.getElementById(`${modalId}`).classList.add('hidden');
+        }
+
+        // Login page tab switcher
+        function setupLoginTabs() {
+            const loginTab = document.getElementById('login-tab-btn');
+            const regTab = document.getElementById('register-tab-btn');
+            const loginForm = document.getElementById('login-form');
+            const regForm = document.getElementById('register-form');
+
+            loginTab.addEventListener('click', () => {
+                loginTab.classList.add('text-purple-400', 'border-purple-400');
+                loginTab.classList.remove('text-gray-500');
+                regTab.classList.add('text-gray-500');
+                regTab.classList.remove('text-purple-400', 'border-purple-400');
+                loginForm.classList.remove('hidden');
+                regForm.classList.add('hidden');
+            });
+            regTab.addEventListener('click', () => {
+                regTab.classList.add('text-purple-400', 'border-purple-400');
+                regTab.classList.remove('text-gray-500');
+                loginTab.classList.add('text-gray-500');
+                loginTab.classList.remove('text-purple-400', 'border-purple-400');
+                regForm.classList.remove('hidden');
+                loginForm.classList.add('hidden');
+            });
+        }
+
+        // Registration multi-step logic
+        function setupRegistrationSteps() {
+            const step1 = document.getElementById('reg-step-1');
+            const step2 = document.getElementById('reg-step-2');
+            const step3 = document.getElementById('reg-step-3');
+            
+            document.getElementById('reg-next-1').addEventListener('click', () => {
+                step1.classList.add('hidden');
+                step2.classList.remove('hidden');
+            });
+            document.getElementById('reg-next-2').addEventListener('click', () => {
+                step2.classList.add('hidden');
+                step3.classList.remove('hidden');
+            });
+        }
+        
+        // --- INITIALIZE ---
+        initFirebase();
+        
+    </script>
+</body>
+</html>
